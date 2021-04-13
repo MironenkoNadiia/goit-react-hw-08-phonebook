@@ -8,6 +8,8 @@
   margin: 0 auto;
 }
 .Container {
+  font-family: 'New Tegomin', serif;
+  font-weight: 700;
   margin: 0 auto;
   width: 400px;
 }

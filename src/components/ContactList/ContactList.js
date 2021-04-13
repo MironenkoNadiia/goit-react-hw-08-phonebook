@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import s from "./contactList.module.css";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
-import { deleteContact } from "../../Phonebook/redux/actions";
+import phonebookOperations from "../../redux/phonebook/phonebook-operations";
+import phonebookSelectors from "../../redux/phonebook/contacts-selectors";
 
 function ContactList({ contacts, onDeleteContact }) {
   return (
@@ -52,24 +53,12 @@ ContactList.propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-const getVisibleContacts = (contacts, filter) => {
-  return contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-};
-
-const mapStateToProps = (state) => {
-  const { items, filter } = state.contacts;
-
-  const visibleContacts = getVisibleContacts(items, filter);
-
-  return {
-    contacts: visibleContacts,
-  };
-};
+const mapStateToProps = (state) => ({
+  contacts: phonebookSelectors.getVisibleContacts(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  onDeleteContact: (id) => dispatch(deleteContact(id)),
+  onDeleteContact: (id) => dispatch(phonebookOperations.deleteContact(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

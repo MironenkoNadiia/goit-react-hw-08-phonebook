@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import s from "./contactForm.module.css";
-import Toast from "../Message/Message";
+import s from "./ContactForm.module.css";
+import Toast from "../Toast/Toast";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
-import { addContact } from "../../Phonebook/redux/actions";
+import phonebookSelectors from "../../redux/phonebook/contacts-selectors";
+import phonebookOperations from "../../redux/phonebook/phonebook-operations";
 
 class ContactForm extends Component {
   static propTypes = {
@@ -28,7 +29,7 @@ class ContactForm extends Component {
 
     const { name, number } = this.state;
 
-    if (name === "" || name === "") {
+    if (name === "" || number === "") {
       this.showToast("Name or number can't be empty string");
 
       return;
@@ -102,11 +103,12 @@ class ContactForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  contacts: state.contacts.items,
+  contacts: phonebookSelectors.getAllContacts(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddContact: (name, phone) => dispatch(addContact(name, phone)),
+  onAddContact: (name, phone) =>
+    dispatch(phonebookOperations.addContact(name, phone)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

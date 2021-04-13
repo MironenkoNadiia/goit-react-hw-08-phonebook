@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { authOperations } from "../../redux/Auth";
+import authOperations from "../../redux/Auth/auth-operations";
 import s from "./RegisterPage.module.css";
 
 class RegisterPage extends Component {

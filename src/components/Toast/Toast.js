@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import s from "./message.module.css";
+import s from "./Toast.module.css";
 import { createPortal } from "react-dom";
 
 function Toast({ message }) {

@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { Redirect, Switch } from "react-router-dom";
 import AppBar from "./components/AppBar/AppBar";
-import { authOperations } from "./redux/Auth";
+import authOperations from "./redux/Auth/auth-operations";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import Loading from "./components/Loader/Loader";
