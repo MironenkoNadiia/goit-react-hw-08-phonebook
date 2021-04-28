@@ -1,7 +1,6 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { Redirect, Switch } from "react-router-dom";
-import "./App.css";
 import AppBar from "./components/AppBar/AppBar";
 import { authOperations } from "./redux/Auth";
 import PublicRoute from "./components/PublicRoute";
